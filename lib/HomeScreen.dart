@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Homescreen extends StatelessWidget {
-  static const String routeNmae="home";
+  static const String routeName="home";
   const Homescreen ({super.key});
 
   @override
@@ -9,6 +9,7 @@ class Homescreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("islami"),
+
       ),
     );
   }
