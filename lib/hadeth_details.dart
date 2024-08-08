@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:islami_app/hadeth_model.dart';
+import 'package:islami_app/providers/My_provider.dart';
+import 'package:provider/provider.dart';
 
 class HadethDetailsScreen extends StatelessWidget {
   static const String routeName = "hadeth Details";
@@ -10,10 +12,14 @@ class HadethDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var model = ModalRoute.of(context)?.settings.arguments as HadethModel;
+
+    var provider = Provider.of<MyProvider>(context);
     return Stack(
       children: [
         Image.asset(
-          "assets/images/main_bg.png",
+          provider.mode == ThemeMode.light
+              ? "assets/images/main_bg.png"
+              : "assets/images/dark_background.png",
           width: double.infinity,
           fit: BoxFit.cover,
         ),

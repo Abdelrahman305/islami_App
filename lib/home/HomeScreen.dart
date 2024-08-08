@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:islami_app/My_theme_Data.dart';
 import 'package:islami_app/home/tabs/Quran.dart';
 import 'package:islami_app/home/tabs/Sebha.dart';
 import 'package:islami_app/home/tabs/ahadeth.dart';
 import 'package:islami_app/home/tabs/radio.dart';
 import 'package:islami_app/home/tabs/setting.dart';
+import 'package:islami_app/providers/My_provider.dart';
+import 'package:provider/provider.dart';
 
 class Homescreen extends StatefulWidget {
   static const String routeName = "home";
@@ -20,10 +23,13 @@ class _HomescreenState extends State<Homescreen> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<MyProvider>(context);
     return Stack(
       children: [
         Image.asset(
-          "assets/images/main_bg.png",
+          provider.mode == ThemeMode.light
+              ? "assets/images/main_bg.png"
+              : "assets/images/dark_background.png",
           width: double.infinity,
           fit: BoxFit.cover,
         ),
@@ -34,10 +40,7 @@ class _HomescreenState extends State<Homescreen> {
             backgroundColor: Colors.transparent,
             title: Text(
               "islami",
-              style: GoogleFonts.elMessiri(
-                fontSize: 30,
-                fontWeight: FontWeight.w700,
-              ),
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
           ),
           bottomNavigationBar: BottomNavigationBar(
@@ -46,33 +49,29 @@ class _HomescreenState extends State<Homescreen> {
                 selectedIndex = value;
                 setState(() {});
               },
-              backgroundColor: Color(0xFFB7935F),
-              type: BottomNavigationBarType.shifting,
-              selectedItemColor: Colors.black,
-              unselectedItemColor: Colors.white,
-              showSelectedLabels: false,
-              showUnselectedLabels: false,
+              // backgroundColor: MyThemeData.primaryColor,
+
               items: [
                 BottomNavigationBarItem(
                     icon: ImageIcon(AssetImage("assets/images/moshaf.png")),
                     label: "",
-                    backgroundColor: Color(0xFFB7935F)),
+                ),
                 BottomNavigationBarItem(
                     icon: ImageIcon(AssetImage("assets/images/sebha.png")),
                     label: "",
-                    backgroundColor: Color(0xFFB7935F)),
+                ),
                 BottomNavigationBarItem(
                     icon: ImageIcon(AssetImage("assets/images/radio.png")),
                     label: "",
-                    backgroundColor: Color(0xFFB7935F)),
+                ),
                 BottomNavigationBarItem(
                     icon: ImageIcon(AssetImage("assets/images/ahadeth.png")),
                     label: "",
-                    backgroundColor: Color(0xFFB7935F)),
+                ),
                 BottomNavigationBarItem(
                     icon: Icon(Icons.settings),
                     label: "",
-                    backgroundColor: Color(0xFFB7935F)),
+                ),
               ]),
           body: tabs[selectedIndex],
         ),

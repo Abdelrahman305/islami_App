@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:islami_app/providers/My_provider.dart';
 import 'package:islami_app/sura_model.dart';
+import 'package:provider/provider.dart';
 
 class SuraDetailsScreen extends StatefulWidget {
   static const String routeName = "SuraDetails";
@@ -21,10 +23,13 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
     if (verses.isEmpty) {
       loudSuraFile(model.index);
     }
+    var provider = Provider.of<MyProvider>(context);
 
     return Stack(children: [
       Image.asset(
-        "assets/images/main_bg.png",
+        provider.mode == ThemeMode.light
+            ? "assets/images/main_bg.png"
+            : "assets/images/dark_background.png",
         width: double.infinity,
         fit: BoxFit.cover,
       ),

@@ -135,17 +135,13 @@ class QuranTab extends StatelessWidget {
         ),
         Divider(
           thickness: 3,
-          color: Color(0xFFB7935F),
         ),
         Text(
           "Sura Name",
           textAlign: TextAlign.center,
-          style:
-              GoogleFonts.elMessiri(fontSize: 25, fontWeight: FontWeight.w600),
-        ),
+          style: Theme.of(context).textTheme.bodyMedium),
         Divider(
           thickness: 3,
-          color: Color(0xFFB7935F),
         ),
         Expanded(
           child: ListView.separated(
